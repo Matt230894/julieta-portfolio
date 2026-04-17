@@ -1,0 +1,178 @@
+---
+import '../styles/global.css';
+const { title, description } = Astro.props;
+const siteTitle = "Julieta — Ecología del Fuego";
+---
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content={description || "Ecóloga e investigadora del fuego en los Parques Nacionales de Corrientes"} />
+  <title>{title ? `${title} | ${siteTitle}` : siteTitle}</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">🌿 Julieta</a>
+      <ul class="nav-links">
+        <li><a href="/">Inicio</a></li>
+        <li><a href="/investigacion">Investigación</a></li>
+        <li><a href="/campo">Del campo</a></li>
+        <li><a href="/apoyame" class="nav-cta">Apoyame</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main>
+    <slot />
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>Julieta · Ecóloga · Becaria CONICET · Bombera Voluntaria</p>
+      <p class="footer-sub">Estudiando cómo la vida vuelve después del fuego — Corrientes, Argentina</p>
+      <div class="footer-badge">
+        <a href="https://testudo.com.ar" target="_blank" rel="noopener" class="testudo-link">
+          <img src="/images/testudo-logo.png" alt="Testudo Systems" class="testudo-logo" />
+          <span>Desarrollado por Testudo Systems</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>
+
+<style>
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--verde-oscuro);
+  border-bottom: 2px solid var(--verde-claro);
+}
+
+.nav-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 56px;
+}
+
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--crema) !important;
+  font-style: italic;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.nav-links a {
+  color: var(--ceniza);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover {
+  color: var(--crema);
+}
+
+.nav-cta {
+  background: var(--fuego) !important;
+  color: var(--crema) !important;
+  padding: 0.4em 1em;
+  border-radius: 2px;
+}
+
+.nav-cta:hover {
+  background: #e05520 !important;
+}
+
+.footer {
+  margin-top: 6rem;
+  background: var(--verde-oscuro);
+  color: var(--ceniza);
+  padding: 2.5rem 0;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+}
+
+.footer-sub {
+  margin-top: 0.4rem;
+  color: var(--humo);
+  font-style: italic;
+}
+
+.footer-badge {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255,255,255,0.07);
+}
+
+.testudo-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  opacity: 0.5;
+  transition: opacity 0.2s;
+  text-decoration: none;
+}
+
+.testudo-link:hover {
+  opacity: 0.9;
+}
+
+.testudo-logo {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  filter: brightness(0.7);
+}
+
+.testudo-link span {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--humo);
+}
+
+@media (max-width: 640px) {
+  .nav-links {
+    gap: 1rem;
+  }
+  .nav-links li:nth-child(2) {
+    display: none;
+  }
+}
+</style>

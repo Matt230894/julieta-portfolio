@@ -1,0 +1,168 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection, getEntry } from 'astro:content';
+
+const posts = (await getCollection('blog'))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
+
+const hero = (await getEntry('settings', 'hero'))?.data;
+const apoyo = (await getEntry('settings', 'apoyo'))?.data;
+const statsData = (await getEntry('settings', 'stats'))?.data;
+---
+
+<Layout>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"><div class="hero-lines"></div></div>
+    <div class="hero-content container">
+      <span class="hero-label">Ecología · Fuego · Corrientes</span>
+      <h1>{hero?.line1 ?? 'El fuego pasa.'}<br/><em>{hero?.line2 ?? 'La vida vuelve.'}</em></h1>
+      <p class="hero-sub">{hero?.description}</p>
+      <div class="hero-actions">
+        <a href="/campo" class="btn-primary">{hero?.btn_primary ?? 'Ver del campo'}</a>
+        <a href="/apoyame" class="btn-secondary">{hero?.btn_secondary ?? 'Apoyar la investigación'}</a>
+      </div>
+    </div>
+    <div class="hero-decoration">
+      <svg viewBox="0 0 200 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M100 380 Q60 300 80 220 Q100 140 70 60" stroke="#4a7c4a" stroke-width="1.5" fill="none" opacity="0.4"/>
+        <path d="M80 220 Q50 200 30 180" stroke="#4a7c4a" stroke-width="1" fill="none" opacity="0.3"/>
+        <path d="M80 220 Q110 195 130 170" stroke="#4a7c4a" stroke-width="1" fill="none" opacity="0.3"/>
+        <path d="M70 300 Q40 285 20 270" stroke="#4a7c4a" stroke-width="1" fill="none" opacity="0.3"/>
+        <circle cx="100" cy="380" r="3" fill="#4a7c4a" opacity="0.5"/>
+        <circle cx="80" cy="220" r="2" fill="#8aab6f" opacity="0.4"/>
+        <circle cx="70" cy="60" r="2" fill="#8aab6f" opacity="0.4"/>
+        <circle cx="150" cy="80" r="1.5" fill="#c84b1a" opacity="0.6"/>
+        <circle cx="165" cy="60" r="1" fill="#c84b1a" opacity="0.4"/>
+        <path d="M150 80 Q155 65 150 55" stroke="#c84b1a" stroke-width="1" fill="none" opacity="0.3"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- STATS BAR -->
+  <section class="stats-bar">
+    <div class="container stats-inner">
+      {statsData?.items?.map((stat: any, i: number) => (
+        <>
+          <div class="stat">
+            <span class="stat-num">{stat.valor}</span>
+            <span class="stat-label">{stat.label}</span>
+          </div>
+          {i < statsData.items.length - 1 && <div class="stat-divider"></div>}
+        </>
+      ))}
+    </div>
+  </section>
+
+  <!-- ÚLTIMAS ENTRADAS -->
+  <section class="posts-section container">
+    <div class="section-header">
+      <h2>Del campo</h2>
+      <a href="/campo" class="ver-todo">Ver todo →</a>
+    </div>
+    {posts.length === 0 ? (
+      <div class="empty-posts"><p>Las primeras entradas del campo llegan pronto.</p></div>
+    ) : (
+      <div class="posts-grid">
+        {posts.map(post => (
+          <article class="post-card">
+            {post.data.cover && <img src={post.data.cover} alt={post.data.title} class="post-img" />}
+            <div class="post-body">
+              <time class="post-date" datetime={post.data.date.toISOString()}>
+                {post.data.date.toLocaleDateString('es-AR', { day: 'numeric', month: 'long', year: 'numeric' })}
+              </time>
+              <h3><a href={`/campo/${post.slug}`}>{post.data.title}</a></h3>
+              <p>{post.data.description}</p>
+              <div class="post-tags">
+                {post.data.tags?.map((tag: string) => <span class="tag">{tag}</span>)}
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    )}
+  </section>
+
+  <!-- APOYO CTA -->
+  {apoyo?.cafecito_activo && (
+    <section class="apoyo-banner container">
+      <div class="apoyo-inner">
+        <div class="apoyo-text">
+          <h2>Esta investigación la hacemos entre todos</h2>
+          <p>La beca CONICET cubre lo básico. El trabajo de campo real —nafta, equipos, días en el Iberá— va más allá de eso. Con tu apoyo llego más lejos, literalmente.</p>
+          <div class="apoyo-buttons">
+            <a href={apoyo.cafecito_url} target="_blank" rel="noopener" class="btn-cafecito">☕ Invitame un cafecito</a>
+            <a href="/apoyame" class="btn-mas">Más formas de apoyar</a>
+          </div>
+        </div>
+        <div class="apoyo-visual">
+          <div class="fire-icon">🔥</div>
+          <div class="leaf-icon">🌿</div>
+        </div>
+      </div>
+    </section>
+  )}
+</Layout>
+
+<style>
+.hero { position: relative; min-height: 85vh; display: flex; align-items: center; overflow: hidden; background: var(--verde-oscuro); }
+.hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse at 80% 50%, rgba(200,75,26,0.08) 0%, transparent 60%), radial-gradient(ellipse at 20% 80%, rgba(74,124,74,0.15) 0%, transparent 50%); }
+.hero-lines { position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(138,171,111,0.05) 39px, rgba(138,171,111,0.05) 40px); }
+.hero-content { position: relative; z-index: 2; padding-top: 4rem; padding-bottom: 4rem; max-width: 680px; }
+.hero-label { font-family: var(--font-mono); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--verde-sage); display: block; margin-bottom: 1.5rem; }
+.hero h1 { font-size: clamp(2.8rem, 7vw, 5rem); color: var(--crema); margin-bottom: 1.5rem; font-weight: 700; }
+.hero h1 em { color: var(--verde-sage); font-style: italic; }
+.hero-sub { color: var(--ceniza); font-size: 1.1rem; max-width: 520px; margin-bottom: 2.5rem; line-height: 1.8; }
+.hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+.btn-primary { background: var(--fuego); color: var(--crema); padding: 0.75em 1.8em; font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; border-radius: 2px; transition: transform 0.15s, background 0.2s; }
+.btn-primary:hover { background: #e05520; transform: translateY(-1px); color: var(--crema); }
+.btn-secondary { border: 1px solid var(--verde-sage); color: var(--verde-sage); padding: 0.75em 1.8em; font-family: var(--font-mono); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; border-radius: 2px; transition: all 0.2s; }
+.btn-secondary:hover { background: var(--verde-sage); color: var(--verde-oscuro); }
+.hero-decoration { position: absolute; right: 8%; top: 50%; transform: translateY(-50%); width: 200px; height: 400px; opacity: 0.7; }
+
+.stats-bar { background: var(--crema-oscura); border-top: 1px solid var(--ceniza); border-bottom: 1px solid var(--ceniza); padding: 1.5rem 0; }
+.stats-inner { display: flex; align-items: center; justify-content: space-around; flex-wrap: wrap; gap: 1rem; }
+.stat { text-align: center; }
+.stat-num { display: block; font-family: var(--font-display); font-size: 1.8rem; color: var(--verde-medio); font-weight: 700; }
+.stat-label { font-family: var(--font-mono); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--humo); }
+.stat-divider { width: 1px; height: 40px; background: var(--ceniza); }
+
+.posts-section { margin-top: 5rem; }
+.section-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 2.5rem; border-bottom: 2px solid var(--verde-oscuro); padding-bottom: 0.75rem; }
+.section-header h2 { font-size: 1.8rem; color: var(--verde-oscuro); }
+.ver-todo { font-family: var(--font-mono); font-size: 0.75rem; color: var(--tierra); text-transform: uppercase; letter-spacing: 0.1em; }
+.empty-posts { background: var(--crema-oscura); border: 1px dashed var(--ceniza); padding: 3rem; text-align: center; color: var(--humo); font-style: italic; border-radius: 2px; }
+.posts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 2rem; }
+.post-card { background: white; border: 1px solid var(--crema-oscura); border-radius: 3px; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; }
+.post-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(26,46,26,0.1); }
+.post-img { width: 100%; height: 180px; object-fit: cover; }
+.post-body { padding: 1.25rem; }
+.post-date { font-family: var(--font-mono); font-size: 0.65rem; color: var(--humo); text-transform: uppercase; letter-spacing: 0.08em; display: block; margin-bottom: 0.5rem; }
+.post-body h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+.post-body h3 a { color: var(--verde-oscuro); }
+.post-body h3 a:hover { color: var(--fuego); }
+.post-body p { font-size: 0.9rem; color: var(--humo); margin-bottom: 0.75rem; }
+.post-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+
+.apoyo-banner { margin-top: 5rem; }
+.apoyo-inner { background: var(--verde-oscuro); border-radius: 4px; padding: 3.5rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; position: relative; overflow: hidden; }
+.apoyo-inner::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 90% 50%, rgba(200,75,26,0.12) 0%, transparent 60%); }
+.apoyo-text { position: relative; z-index: 1; max-width: 520px; }
+.apoyo-text h2 { color: var(--crema); font-size: 1.7rem; margin-bottom: 1rem; }
+.apoyo-text p { color: var(--ceniza); font-size: 0.95rem; margin-bottom: 1.75rem; line-height: 1.8; }
+.apoyo-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
+.btn-cafecito { background: #f8b400; color: var(--carbon); padding: 0.75em 1.5em; font-family: var(--font-mono); font-size: 0.8rem; font-weight: 700; border-radius: 2px; transition: transform 0.15s; }
+.btn-cafecito:hover { transform: translateY(-2px); color: var(--carbon); }
+.btn-mas { border: 1px solid var(--ceniza); color: var(--ceniza); padding: 0.75em 1.5em; font-family: var(--font-mono); font-size: 0.8rem; border-radius: 2px; transition: all 0.2s; }
+.btn-mas:hover { border-color: var(--crema); color: var(--crema); }
+.apoyo-visual { position: relative; font-size: 4rem; user-select: none; z-index: 1; }
+.leaf-icon { position: absolute; top: -20px; right: -10px; font-size: 2.5rem; opacity: 0.6; animation: float 4s ease-in-out infinite; }
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+@media (max-width: 640px) {
+  .apoyo-inner { padding: 2rem; flex-direction: column; }
+  .apoyo-visual, .hero-decoration { display: none; }
+  .stat-divider { display: none; }
+  .stats-inner { gap: 1.5rem; }
+}
+</style>

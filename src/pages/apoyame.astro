@@ -1,0 +1,321 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Apoyame" description="Apoyá la investigación sobre regeneración post-incendio en los Parques Nacionales de Corrientes">
+
+  <div class="container page-content">
+
+    <header class="page-header">
+      <span class="page-label">Hacelo posible</span>
+      <h1>Apoyar la investigación</h1>
+    </header>
+
+    <div class="apoyo-intro">
+      <p>
+        La beca CONICET cubre lo básico. Lo que no cubre es el trabajo de campo real: 
+        combustible para llegar a los parques, viáticos, equipos de muestreo, baterías, 
+        bolsas de muestra. Son costos pequeños en términos absolutos pero grandes 
+        para una becaria.
+      </p>
+      <p>
+        Cada peso que aportás se convierte en kilómetros recorridos, parcelas muestreadas 
+        y datos reales sobre cómo los ecosistemas de Corrientes se recuperan del fuego.
+      </p>
+    </div>
+
+    <div class="opciones-grid">
+
+      <div class="opcion-card featured">
+        <div class="opcion-icon">☕</div>
+        <h2>Cafecito</h2>
+        <p>La forma más simple. Un pago único o recurrente desde $500 ARS. Sin cuenta, sin complicaciones.</p>
+        <a href="https://cafecito.app/TUUSUARIO" target="_blank" rel="noopener" class="btn-opcion btn-cafecito">
+          Ir a Cafecito →
+        </a>
+        <span class="opcion-label">Recomendado · Pago local</span>
+      </div>
+
+      <div class="opcion-card">
+        <div class="opcion-icon">🎁</div>
+        <h2>Patreon</h2>
+        <p>Suscripción mensual. Accedés a actualizaciones exclusivas del campo y resultados antes que nadie.</p>
+        <a href="https://patreon.com/TUUSUARIO" target="_blank" rel="noopener" class="btn-opcion btn-patreon">
+          Ir a Patreon →
+        </a>
+        <span class="opcion-label">Suscripción · Internacional</span>
+      </div>
+
+      <div class="opcion-card">
+        <div class="opcion-icon">💳</div>
+        <h2>Transferencia directa</h2>
+        <p>Si preferís hacerlo directo, podés transferir por alias o CVU.</p>
+        <div class="transferencia-data">
+          <div class="dato">
+            <span class="dato-label">Alias</span>
+            <code class="dato-value">ALIAS.ACÁ</code>
+          </div>
+          <div class="dato">
+            <span class="dato-label">Titular</span>
+            <code class="dato-value">Julieta [Apellido]</code>
+          </div>
+        </div>
+        <span class="opcion-label">Sin intermediarios</span>
+      </div>
+
+    </div>
+
+    <section class="transparencia">
+      <h2>¿Para qué va el dinero?</h2>
+      <div class="uso-grid">
+        <div class="uso-item">
+          <span class="uso-icon">⛽</span>
+          <div>
+            <strong>Combustible</strong>
+            <p>Los parques están a 80-150km. Un viaje de campo completo son 300km ida y vuelta.</p>
+          </div>
+        </div>
+        <div class="uso-item">
+          <span class="uso-icon">🧪</span>
+          <div>
+            <strong>Materiales de muestreo</strong>
+            <p>Bolsas, etiquetas, marcos de cuadrante, baterías para GPS y cámara.</p>
+          </div>
+        </div>
+        <div class="uso-item">
+          <span class="uso-icon">🏕️</span>
+          <div>
+            <strong>Viáticos</strong>
+            <p>Alimentación y alojamiento en jornadas de campo largas lejos de la ciudad.</p>
+          </div>
+        </div>
+        <div class="uso-item">
+          <span class="uso-icon">📊</span>
+          <div>
+            <strong>Publicación</strong>
+            <p>Tasas de publicación en acceso abierto para que los resultados sean libres.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="gracias">
+      <p>
+        Independientemente del monto, si apoyás esta investigación te voy a nombrar 
+        en los agradecimientos de mi tesis. La ciencia la hacemos entre todos.
+      </p>
+    </section>
+
+  </div>
+
+</Layout>
+
+<style>
+.page-content {
+  padding-top: 4rem;
+  padding-bottom: 5rem;
+}
+
+.page-header {
+  margin-bottom: 2rem;
+  border-bottom: 2px solid var(--verde-oscuro);
+  padding-bottom: 1rem;
+}
+
+.page-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--tierra);
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.page-header h1 {
+  font-size: 2.5rem;
+  color: var(--verde-oscuro);
+}
+
+.apoyo-intro {
+  max-width: 660px;
+  margin-bottom: 3.5rem;
+}
+
+.apoyo-intro p {
+  font-size: 1.05rem;
+  color: #2a2a28;
+  margin-bottom: 1rem;
+}
+
+/* OPCIONES */
+.opciones-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 4rem;
+}
+
+.opcion-card {
+  background: white;
+  border: 1px solid var(--crema-oscura);
+  border-radius: 4px;
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  position: relative;
+}
+
+.opcion-card.featured {
+  border-color: #f8b400;
+  border-width: 2px;
+  box-shadow: 0 4px 16px rgba(248, 180, 0, 0.12);
+}
+
+.opcion-icon {
+  font-size: 2rem;
+}
+
+.opcion-card h2 {
+  font-size: 1.3rem;
+  color: var(--verde-oscuro);
+}
+
+.opcion-card p {
+  font-size: 0.9rem;
+  color: var(--humo);
+  flex: 1;
+  line-height: 1.6;
+}
+
+.btn-opcion {
+  display: inline-block;
+  padding: 0.65em 1.4em;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: 2px;
+  text-align: center;
+  transition: transform 0.15s;
+  align-self: flex-start;
+}
+.btn-opcion:hover { transform: translateY(-2px); }
+
+.btn-cafecito {
+  background: #f8b400;
+  color: var(--carbon);
+}
+.btn-cafecito:hover { color: var(--carbon); }
+
+.btn-patreon {
+  background: #ff424d;
+  color: white;
+}
+.btn-patreon:hover { color: white; }
+
+.opcion-label {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ceniza);
+  margin-top: auto;
+}
+
+/* TRANSFERENCIA */
+.transferencia-data {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  background: var(--crema-oscura);
+  padding: 0.75rem;
+  border-radius: 3px;
+}
+
+.dato {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.dato-label {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--humo);
+}
+
+.dato-value {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--carbon);
+  background: white;
+  padding: 0.2em 0.5em;
+  border-radius: 2px;
+  border: 1px solid var(--ceniza);
+}
+
+/* TRANSPARENCIA */
+.transparencia {
+  margin-bottom: 3rem;
+}
+
+.transparencia h2 {
+  font-size: 1.5rem;
+  color: var(--verde-oscuro);
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--crema-oscura);
+}
+
+.uso-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+.uso-item {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  background: var(--crema-oscura);
+  padding: 1.25rem;
+  border-radius: 3px;
+}
+
+.uso-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.uso-item strong {
+  display: block;
+  color: var(--verde-oscuro);
+  margin-bottom: 0.25rem;
+  font-family: var(--font-display);
+}
+
+.uso-item p {
+  font-size: 0.85rem;
+  color: var(--humo);
+  margin: 0;
+}
+
+/* GRACIAS */
+.gracias {
+  background: var(--verde-oscuro);
+  color: var(--ceniza);
+  padding: 2rem 2.5rem;
+  border-radius: 4px;
+  font-style: italic;
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+@media (max-width: 768px) {
+  .opciones-grid { grid-template-columns: 1fr; }
+  .uso-grid { grid-template-columns: 1fr; }
+}
+</style>

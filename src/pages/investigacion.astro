@@ -1,0 +1,251 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Investigación" description="Tesis doctoral sobre regeneración post-incendio en Parques Nacionales de Corrientes">
+
+  <div class="container page-content">
+
+    <header class="page-header">
+      <span class="page-label">La ciencia detrás del humo</span>
+      <h1>La investigación</h1>
+    </header>
+
+    <div class="two-col">
+      <div class="main-col">
+
+        <section class="research-block">
+          <h2>¿Qué estudio?</h2>
+          <p>
+            Los incendios son parte natural del ecosistema correntino — los pastizales del Iberá, 
+            el Mburucuyá, el Pre-Delta evolucionaron con el fuego durante miles de años. 
+            Pero la intensidad y frecuencia de los incendios actuales está cambiando, 
+            y no sabemos qué pasa después.
+          </p>
+          <p>
+            Mi tesis doctoral estudia los <strong>patrones de regeneración vegetal post-incendio</strong> 
+            en los cuatro Parques Nacionales de la provincia de Corrientes. ¿Qué especies vuelven 
+            primero? ¿Cuánto tarda en reconstituirse la comunidad? ¿Cambia según la intensidad 
+            del fuego o la época del año?
+          </p>
+        </section>
+
+        <section class="research-block">
+          <h2>¿Por qué importa?</h2>
+          <p>
+            Los humedales y pastizales de Corrientes son reservorios de biodiversidad únicos en 
+            Sudamérica. Entender su dinámica de regeneración no es solo ciencia básica — 
+            es información concreta para los gestores de áreas protegidas, para los bomberos 
+            que deciden dónde y cuándo hacer quemas controladas, y para comunidades que dependen 
+            de estos ecosistemas.
+          </p>
+        </section>
+
+        <section class="research-block">
+          <h2>Dónde trabajo</h2>
+          <div class="parques-grid">
+            <div class="parque-card">
+              <h3>Iberá</h3>
+              <p>El más extenso. Esteros, lagunas y pastizales anegadizos.</p>
+            </div>
+            <div class="parque-card">
+              <h3>Mburucuyá</h3>
+              <p>Pastizales y bosques en galería. Alta diversidad florística.</p>
+            </div>
+            <div class="parque-card">
+              <h3>Pre-Delta</h3>
+              <p>Zona de transición. Influencia del Paraná.</p>
+            </div>
+            <div class="parque-card">
+              <h3>Chaco</h3>
+              <p>Bosque chaqueño. Dinámicas de fuego distintas.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="research-block">
+          <h2>Yo, en dos roles</h2>
+          <p>
+            Hay algo raro en ser ecóloga del fuego y bombera voluntaria al mismo tiempo. 
+            En el campo de investigación miro el incendio como proceso ecológico — necesario, 
+            parte del ciclo. En la guardia lo miro como amenaza que hay que contener.
+          </p>
+          <p>
+            Esa tensión me hace mejor en los dos roles. Entiendo el fuego desde adentro 
+            y desde afuera.
+          </p>
+        </section>
+
+      </div>
+
+      <aside class="side-col">
+        <div class="aside-card">
+          <h3>Afiliación</h3>
+          <p>Becaria Doctoral<br/><strong>CONICET</strong></p>
+        </div>
+        <div class="aside-card">
+          <h3>Estado</h3>
+          <p>Tesis doctoral<br/><strong>en curso</strong></p>
+        </div>
+        <div class="aside-card highlight-card">
+          <h3>¿Querés seguir el proceso?</h3>
+          <p>Subo notas, fotos y avances desde el campo.</p>
+          <a href="/campo" class="btn-aside">Ver entradas →</a>
+        </div>
+        <div class="aside-card cafecito-card">
+          <h3>Apoyar la investigación</h3>
+          <p>Cada aporte ayuda a llegar más lejos en el campo.</p>
+          <a href="https://cafecito.app/TUUSUARIO" target="_blank" rel="noopener" class="btn-cafecito">
+            ☕ Cafecito
+          </a>
+        </div>
+      </aside>
+    </div>
+
+  </div>
+
+</Layout>
+
+<style>
+.page-content {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.page-header {
+  margin-bottom: 3rem;
+  border-bottom: 2px solid var(--verde-oscuro);
+  padding-bottom: 1rem;
+}
+
+.page-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--tierra);
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.page-header h1 {
+  font-size: 2.5rem;
+  color: var(--verde-oscuro);
+}
+
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 4rem;
+  align-items: start;
+}
+
+.research-block {
+  margin-bottom: 3rem;
+}
+
+.research-block h2 {
+  font-size: 1.4rem;
+  color: var(--verde-medio);
+  margin-bottom: 1rem;
+}
+
+.research-block p {
+  margin-bottom: 1rem;
+  color: #2a2a28;
+}
+
+.parques-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.parque-card {
+  background: var(--crema-oscura);
+  border-left: 3px solid var(--verde-claro);
+  padding: 1rem 1.25rem;
+}
+
+.parque-card h3 {
+  font-size: 1rem;
+  color: var(--verde-oscuro);
+  margin-bottom: 0.3rem;
+}
+
+.parque-card p {
+  font-size: 0.85rem;
+  color: var(--humo);
+  margin: 0;
+}
+
+/* ASIDE */
+.side-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  position: sticky;
+  top: 72px;
+}
+
+.aside-card {
+  background: white;
+  border: 1px solid var(--crema-oscura);
+  padding: 1.25rem;
+  border-radius: 3px;
+}
+
+.aside-card h3 {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--humo);
+  margin-bottom: 0.5rem;
+}
+
+.aside-card p {
+  font-size: 0.9rem;
+  color: var(--carbon);
+  margin-bottom: 0.75rem;
+}
+
+.highlight-card {
+  border-left: 3px solid var(--verde-claro);
+}
+
+.btn-aside {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--verde-claro);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.cafecito-card {
+  border-left: 3px solid #f8b400;
+}
+
+.btn-cafecito {
+  display: inline-block;
+  background: #f8b400;
+  color: var(--carbon);
+  padding: 0.5em 1.2em;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: 2px;
+  transition: transform 0.15s;
+}
+.btn-cafecito:hover {
+  transform: translateY(-1px);
+  color: var(--carbon);
+}
+
+@media (max-width: 768px) {
+  .two-col { grid-template-columns: 1fr; }
+  .side-col { position: static; }
+  .parques-grid { grid-template-columns: 1fr; }
+}
+</style>

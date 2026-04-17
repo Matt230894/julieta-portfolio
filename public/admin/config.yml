@@ -1,0 +1,77 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "public/images"
+public_folder: "/images"
+
+collections:
+  # ── POSTS DEL CAMPO ──────────────────────────────────────
+  - name: "blog"
+    label: "Entradas del campo"
+    folder: "src/content/blog"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Título", name: "title", widget: "string" }
+      - { label: "Fecha", name: "date", widget: "datetime" }
+      - { label: "Imagen de portada", name: "cover", widget: "image", required: false }
+      - { label: "Descripción corta", name: "description", widget: "string" }
+      - { label: "Tags", name: "tags", widget: "list", required: false }
+      - label: "Galería de fotos"
+        name: "gallery"
+        widget: "list"
+        required: false
+        fields:
+          - { label: "Foto", name: "image", widget: "image" }
+          - { label: "Descripción", name: "caption", widget: "string", required: false }
+      - { label: "Contenido", name: "body", widget: "markdown" }
+
+  # ── CONFIGURACIÓN DEL SITIO (singleton) ──────────────────
+  - name: "settings"
+    label: "Configuración del sitio"
+    files:
+      - name: "hero"
+        label: "Página de inicio — Hero"
+        file: "src/content/settings/hero.json"
+        fields:
+          - { label: "Título línea 1", name: "line1", widget: "string", default: "El fuego pasa." }
+          - { label: "Título línea 2 (resaltada)", name: "line2", widget: "string", default: "La vida vuelve." }
+          - { label: "Descripción", name: "description", widget: "text" }
+          - { label: "Texto botón principal", name: "btn_primary", widget: "string", default: "Ver del campo" }
+          - { label: "Texto botón secundario", name: "btn_secondary", widget: "string", default: "Apoyar la investigación" }
+
+      - name: "perfil"
+        label: "Mi perfil"
+        file: "src/content/settings/perfil.json"
+        fields:
+          - { label: "Nombre", name: "nombre", widget: "string" }
+          - { label: "Foto de perfil", name: "foto", widget: "image", required: false }
+          - { label: "Título / Rol", name: "rol", widget: "string", default: "Ecóloga · Becaria CONICET · Bombera Voluntaria" }
+          - { label: "Bio corta (para footer y sidebar)", name: "bio_corta", widget: "string" }
+          - { label: "Bio larga (para página de investigación)", name: "bio_larga", widget: "markdown" }
+          - { label: "Institución", name: "institucion", widget: "string", default: "CONICET" }
+          - { label: "Universidad", name: "universidad", widget: "string" }
+
+      - name: "apoyo"
+        label: "Links de apoyo (Cafecito / Patreon)"
+        file: "src/content/settings/apoyo.json"
+        fields:
+          - { label: "URL Cafecito", name: "cafecito_url", widget: "string" }
+          - { label: "Mostrar Cafecito", name: "cafecito_activo", widget: "boolean", default: true }
+          - { label: "URL Patreon", name: "patreon_url", widget: "string", required: false }
+          - { label: "Mostrar Patreon", name: "patreon_activo", widget: "boolean", default: false }
+          - { label: "Alias CBU", name: "alias_cbu", widget: "string", required: false }
+          - { label: "Titular cuenta", name: "titular", widget: "string", required: false }
+          - { label: "Mostrar transferencia directa", name: "transferencia_activa", widget: "boolean", default: false }
+
+      - name: "stats"
+        label: "Estadísticas del campo"
+        file: "src/content/settings/stats.json"
+        fields:
+          - label: "Stats"
+            name: "items"
+            widget: "list"
+            fields:
+              - { label: "Número / Símbolo", name: "valor", widget: "string" }
+              - { label: "Etiqueta", name: "label", widget: "string" }
